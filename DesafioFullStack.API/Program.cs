@@ -1,4 +1,8 @@
+using DesafioFullStack.Domain.Interfaces;
+using DesafioFullStack.Domain.Services;
 using DesafioFullStack.Infrastructure.Data;
+using DesafioFullStack.Infrastructure.Repositories;
+using DesafioFullStack.Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,6 +15,16 @@ builder.Services.AddSwaggerGen();
 // Configurar Entity Framework
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+// Registrar Repositórios
+builder.Services.AddScoped<IEmpresaRepository, EmpresaRepository>();
+builder.Services.AddScoped<IFornecedorRepository, FornecedorRepository>();
+
+// Registrar Domain Services
+builder.Services.AddScoped<IFornecedorDomainService, FornecedorDomainService>();
+
+// Registrar HttpClient para CepService
+builder.Services.AddHttpClient<ICepService, CepService>();
 
 // Configurar CORS para o frontend
 builder.Services.AddCors(options =>
