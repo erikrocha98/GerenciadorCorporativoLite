@@ -26,6 +26,12 @@ namespace DesafioFullStack.Infrastructure.Repositories
             return await query.AnyAsync();
         }
 
+        public async Task<bool> VinculoExisteAsync(Guid empresaId, Guid fornecedorId)
+        {
+            return await _context.EmpresaFornecedores
+                .AnyAsync(ef => ef.EmpresaId == empresaId && ef.FornecedorId == fornecedorId);
+        }
+
         public async Task<IEnumerable<Fornecedor>> GetFornecedoresByEmpresaIdAsync(Guid empresaId)
         {
             var empresa = await _dbSet

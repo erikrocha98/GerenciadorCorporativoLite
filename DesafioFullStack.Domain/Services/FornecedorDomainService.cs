@@ -20,17 +20,17 @@ namespace DesafioFullStack.Domain.Services
 
         public bool ValidarRegraParana(Fornecedor fornecedor, string cepEmpresa)
         {
-            // CEPs do Paraná começam com 80, 81, 82, 83, 84, 85, 86, 87
+            // Prefixos de CEPs do Paraná vão de 80 a 87
             var cepLimpo = new string(cepEmpresa.Where(char.IsDigit).ToArray());
 
             if (cepLimpo.Length != 8)
-                return true; // CEP inválido, deixa outra validação cuidar
+                return true;
 
             var prefixoCep = int.Parse(cepLimpo.Substring(0, 2));
             var ehParana = prefixoCep >= 80 && prefixoCep <= 87;
 
             if (!ehParana)
-                return true; // Não é Paraná, pode vincular
+                return true;
 
             // É Paraná, então verifica se é PF menor de idade
             if (!fornecedor.EhPessoaFisica)
