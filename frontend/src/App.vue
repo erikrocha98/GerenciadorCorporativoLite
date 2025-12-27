@@ -3,7 +3,7 @@
     <!-- App Bar (Header) -->
     <v-app-bar color="primary" prominent>
       <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
-      
+
       <v-toolbar-title class="d-flex align-center">
         <v-icon icon="mdi-domain" class="mr-2"></v-icon>
         <span class="font-weight-bold">Gestão de Empresas e Fornecedores</span>
@@ -28,37 +28,21 @@
     <v-navigation-drawer v-model="drawer" temporary>
       <v-list>
         <!-- Header do Menu -->
-        <v-list-item
-          prepend-icon="mdi-view-dashboard"
-          title="Menu teste"
-          subtitle="Navegação"
-        ></v-list-item>
+        <v-list-item prepend-icon="mdi-view-dashboard" title="Menu teste" subtitle="Navegação"></v-list-item>
       </v-list>
 
       <v-divider></v-divider>
 
       <!-- Itens do Menu -->
       <v-list density="compact" nav>
-        <v-list-item
-          prepend-icon="mdi-view-dashboard"
-          title="Dashboard"
-          value="dashboard"
-          :to="{ name: 'Dashboard' }"
-        ></v-list-item>
+        <v-list-item prepend-icon="mdi-view-dashboard" title="Dashboard" value="dashboard"
+          :to="{ name: 'Dashboard' }"></v-list-item>
 
-        <v-list-item
-          prepend-icon="mdi-domain"
-          title="Empresas"
-          value="empresas"
-          :to="{ name: 'Empresas' }"
-        ></v-list-item>
+        <v-list-item prepend-icon="mdi-domain" title="Empresas" value="empresas"
+          :to="{ name: 'Empresas' }"></v-list-item>
 
-        <v-list-item
-          prepend-icon="mdi-account-multiple"
-          title="Fornecedores"
-          value="fornecedores"
-          :to="{ name: 'Fornecedores' }"
-        ></v-list-item>
+        <v-list-item prepend-icon="mdi-account-multiple" title="Fornecedores" value="fornecedores"
+          :to="{ name: 'Fornecedores' }"></v-list-item>
       </v-list>
     </v-navigation-drawer>
 
@@ -80,5 +64,5 @@ const themeStore = useThemeStore();
 </script>
 
 <style scoped>
-/* Adicione estilos customizados se necessário */
+/* Para adicionar estilos customizados posteriormente se necessário */
 </style>
