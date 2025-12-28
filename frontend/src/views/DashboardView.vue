@@ -129,7 +129,7 @@ const headers = [
   { title: 'Cidade', key: 'cidade', sortable: true },
   { title: 'UF', key: 'uf', sortable: true },
   { title: 'Ações', key: 'actions', sortable: false, align: 'end' },
-];
+] as const;
 
 // Pegar as 5 empresas mais recentes
 const empresasRecentes = computed(() => {
