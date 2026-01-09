@@ -35,7 +35,7 @@ namespace DesafioFullStack.API.Controllers
             return Ok(empresasDto);
         }
 
-        [HttpGet("id")]
+        [HttpGet("{id}")]
         public async Task<ActionResult<EmpresaDto>> GetById(Guid id)
         {
             var empresa = await _empresaRepository.GetByIdAsync(id);

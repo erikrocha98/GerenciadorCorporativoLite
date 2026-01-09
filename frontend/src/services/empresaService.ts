@@ -19,6 +19,7 @@ export const empresaService = {
    * Buscar empresa por ID
    */
     async getById(id: string): Promise<Empresa> {
+        console.log('Fetching empresa with ID:', id);
         try {
             const response = await api.get<Empresa>(`/Empresa/${id}`);
             return response.data;

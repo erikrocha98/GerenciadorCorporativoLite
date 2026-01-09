@@ -18,7 +18,7 @@ export const fornecedorService = {
   /**
    * Buscar fornecedor por ID
    */
-  async getById(id: number): Promise<Fornecedor> {
+  async getById(id: string): Promise<Fornecedor> {
     try {
       const response = await api.get<Fornecedor>(`/Fornecedor/${id}`);
       return response.data;
@@ -44,7 +44,7 @@ export const fornecedorService = {
   /**
    * Atualizar fornecedor
    */
-  async update(id: number, fornecedor: FornecedorFormData): Promise<Fornecedor> {
+  async update(id: string, fornecedor: FornecedorFormData): Promise<Fornecedor> {
     try {
       const response = await api.put<Fornecedor>(`/Fornecedor/${id}`, fornecedor);
       return response.data;
@@ -57,7 +57,7 @@ export const fornecedorService = {
   /**
    * Deletar fornecedor
    */
-  async delete(id: number): Promise<void> {
+  async delete(id: string): Promise<void> {
     try {
       await api.delete(`/Fornecedor/${id}`);
     } catch (error) {
@@ -86,7 +86,7 @@ export const fornecedorService = {
   /**
    * Buscar empresas de um fornecedor
    */
-  async getEmpresas(id: number): Promise<Empresa[]> {
+  async getEmpresas(id: string): Promise<Empresa[]> {
     try {
       const response = await api.get<Empresa[]>(`/Fornecedor/${id}/empresas`);
       return response.data;

@@ -311,7 +311,7 @@ function mostrarMensagem(texto: string, cor: string) {
 
 // Carregar dados ao montar
 onMounted(async () => {
-  const id = Number(route.params.id);
+  const id = route.params.id as string;
   await empresaStore.fetchEmpresaById(id);
   await fornecedorStore.fetchFornecedores();
 });
