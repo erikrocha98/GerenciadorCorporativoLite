@@ -18,7 +18,7 @@ export const empresaService = {
     /**
    * Buscar empresa por ID
    */
-    async getById(id: number): Promise<Empresa> {
+    async getById(id: string): Promise<Empresa> {
         try {
             const response = await api.get<Empresa>(`/Empresa/${id}`);
             return response.data;
@@ -44,7 +44,7 @@ export const empresaService = {
     /**
    * Atualizar empresa
    */
-    async update(id: number, empresa: EmpresaFormData): Promise<Empresa> {
+    async update(id: string, empresa: EmpresaFormData): Promise<Empresa> {
         try {
             const response = await api.put<Empresa>(`/Empresa/${id}`, empresa);
             return response.data;
@@ -57,7 +57,7 @@ export const empresaService = {
     /**
    * Deletar empresa
    */
-    async delete(id: number): Promise<void> {
+    async delete(id: string): Promise<void> {
         try {
             await api.delete(`/Empresa/${id}`);
         } catch (error) {
@@ -69,7 +69,7 @@ export const empresaService = {
     /**
    * Buscar fornecedores de uma empresa
    */
-    async getFornecedores(id: number): Promise<Fornecedor[]> {
+    async getFornecedores(id: string): Promise<Fornecedor[]> {
         try {
             const response = await api.get<Fornecedor[]>(`/Empresa/${id}/fornecedores`);
             return response.data;
@@ -82,7 +82,7 @@ export const empresaService = {
     /**
    * Associar fornecedor à empresa
    */
-    async addFornecedor(empresaId: number, fornecedorId: number): Promise<void> {
+    async addFornecedor(empresaId: string, fornecedorId: string): Promise<void> {
         try {
             await api.post(`/Empresa/${empresaId}/fornecedores/${fornecedorId}`);
         } catch (error) {
@@ -94,7 +94,7 @@ export const empresaService = {
     /**
    * Remover associação de fornecedor e empresa
    */
-    async removeFornecedor(empresaId: number, fornecedorId: number): Promise<void> {
+    async removeFornecedor(empresaId: string, fornecedorId: string): Promise<void> {
         try {
             await api.delete(`/Empresa/${empresaId}/fornecedores/${fornecedorId}`);
         } catch (error) {

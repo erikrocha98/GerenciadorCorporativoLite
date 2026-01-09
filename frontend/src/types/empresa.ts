@@ -1,5 +1,7 @@
+import type { Fornecedor } from "./fornecedor"
+
 export interface Empresa {
-  id: number
+  id: string
   nomeFantasia: string
   cnpj: string
   cep: string
@@ -11,7 +13,7 @@ export interface Empresa {
   uf?: string
   
   // Relacionamento
-  fornecedores?: number[]
+  fornecedores?: Fornecedor[]
   createdAt?: string
   updatedAt?: string
 }

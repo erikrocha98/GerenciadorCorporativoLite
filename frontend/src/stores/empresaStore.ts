@@ -31,7 +31,7 @@ export const useEmpresaStore = defineStore('empresa', () => {
     /**
    * Buscar empresa por ID
    */
-    async function fetchEmpresaById(id: number) {
+    async function fetchEmpresaById(id: string) {
         loading.value = true;
         error.value = null;
         try {
@@ -66,7 +66,7 @@ export const useEmpresaStore = defineStore('empresa', () => {
     /**
    * Atualizar empresa
    */
-    async function atualizarEmpresa(id: number, empresa: EmpresaFormData) {
+    async function atualizarEmpresa(id: string, empresa: EmpresaFormData) {
         loading.value = true;
         error.value = null;
         try {
@@ -90,7 +90,7 @@ export const useEmpresaStore = defineStore('empresa', () => {
     /**
    * Deletar empresa
    */
-    async function deletarEmpresa(id: number) {
+    async function deletarEmpresa(id: string) {
         loading.value = true;
         error.value = null;
         try {
@@ -110,7 +110,7 @@ export const useEmpresaStore = defineStore('empresa', () => {
     /**
    * Adicionar fornecedor à empresa
    */
-    async function adicionarFornecedor(empresaId: number, fornecedorId: number) {
+    async function adicionarFornecedor(empresaId: string, fornecedorId: string) {
         loading.value = true;
         error.value = null;
         try {
@@ -128,7 +128,7 @@ export const useEmpresaStore = defineStore('empresa', () => {
     /**
    * Remover fornecedor da empresa
    */
-    async function removerFornecedor(empresaId: number, fornecedorId: number) {
+    async function removerFornecedor(empresaId: string, fornecedorId: string) {
         loading.value = true;
         error.value = null;
         try {

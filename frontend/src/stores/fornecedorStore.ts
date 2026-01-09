@@ -28,7 +28,7 @@ export const useFornecedorStore = defineStore('fornecedor', () => {
     /**
      * Buscar fornecedor por ID
      */
-    async function fetchFornecedorById(id: number) {
+    async function fetchFornecedorById(id: string) {
         loading.value = true;
         error.value = null;
         try {
@@ -63,7 +63,7 @@ export const useFornecedorStore = defineStore('fornecedor', () => {
     /**
      * Atualizar fornecedor
      */
-    async function atualizarFornecedor(id: number, fornecedor: FornecedorFormData) {
+    async function atualizarFornecedor(id: string, fornecedor: FornecedorFormData) {
         loading.value = true;
         error.value = null;
         try {
@@ -87,7 +87,7 @@ export const useFornecedorStore = defineStore('fornecedor', () => {
     /**
      * Deletar fornecedor
      */
-    async function deletarFornecedor(id: number) {
+    async function deletarFornecedor(id: string) {
         loading.value = true;
         error.value = null;
         try {
