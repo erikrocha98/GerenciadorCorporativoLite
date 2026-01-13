@@ -143,6 +143,29 @@ export const useEmpresaStore = defineStore('empresa', () => {
         }
     }
 
+    /**
+     * Buscar fornecedores de uma empresa
+     */
+    async function fetchFornecedoresEmpresa(empresaId: string) {
+        loading.value = true;
+        error.value = null;
+        try {
+            const fornecedores = await empresaService.getFornecedores(empresaId);
+
+            // Atualizar a empresa atual com os fornecedores
+            if (empresaAtual.value?.id === empresaId) {
+                empresaAtual.value.fornecedores = fornecedores;
+            }
+
+            return fornecedores;
+        } catch (err: any) {
+            error.value = err.message || 'Erro ao buscar fornecedores';
+            throw err;
+        } finally {
+            loading.value = false;
+        }
+    }
+
     return {
         empresas,
         empresaAtual,

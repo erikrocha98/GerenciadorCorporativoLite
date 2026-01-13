@@ -265,7 +265,7 @@ function getIniciais(nome: string): string {
 }
 
 // Adicionar fornecedor
-async function adicionarFornecedor(fornecedorId: number) {
+async function adicionarFornecedor(fornecedorId: string) {
   try {
     await empresaStore.adicionarFornecedor(empresaStore.empresaAtual!.id!, fornecedorId);
     mostrarMensagem('Fornecedor adicionado com sucesso!', 'success');
