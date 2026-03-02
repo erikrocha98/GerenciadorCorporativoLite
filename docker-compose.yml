@@ -1,23 +1,62 @@
 version: '3.8'
 
 services:
+  # SQL Server - Usando Azure SQL Edge (mais leve e compatível)
   sqlserver:
-    image: mcr.microsoft.com/mssql/server:2022-latest
-    container_name: desafio-sqlserver
+    image: mcr.microsoft.com/azure-sql-edge:latest
+    container_name: sqlserver
+    user: "0:0"  # Rodar como root para evitar problemas de permissão
     environment:
       - ACCEPT_EULA=Y
-      - SA_PASSWORD=YourStrong@Passw0rd
+      - MSSQL_SA_PASSWORD=YourStrong@Password123
       - MSSQL_PID=Developer
     ports:
       - "1433:1433"
     volumes:
-      - sqlserver-data:/var/opt/mssql
+      - sqlserver_data:/var/opt/mssql
     networks:
-      - desafio-network
+      - backend-network
+    deploy:
+      resources:
+        limits:
+          memory: 1536M  # 1.5GB - Azure SQL Edge é mais leve que SQL Server
+        reservations:
+          memory: 512M
+    healthcheck:
+      test: /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P "YourStrong@Password123" -Q "SELECT 1" || exit 1
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 40s
+
+  # Backend .NET
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: dotnet-backend
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:5000
+      - ConnectionStrings__DefaultConnection=Server=sqlserver;Database=DesafioFullStackDb;User Id=sa;Password=YourStrong@Password123;TrustServerCertificate=True;
+    ports:
+      - "5253:5000"
+    depends_on:
+      sqlserver:
+        condition: service_healthy
+    networks:
+      - backend-network
+    deploy:
+      resources:
+        limits:
+          memory: 512M  # Backend .NET usa menos memória
+        reservations:
+          memory: 256M
+    restart: unless-stopped
 
 networks:
-  desafio-network:
+  backend-network:
     driver: bridge
 
 volumes:
-  sqlserver-data:
+  sqlserver_data:
