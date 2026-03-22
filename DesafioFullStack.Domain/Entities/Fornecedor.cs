@@ -18,7 +18,7 @@ namespace DesafioFullStack.Domain.Entities
         public string? Rg { get; set; }
         public DateTime? DataNascimento { get; set; }
 
-        public bool EhPessoaFisica => CpfCnpj.Length == 11;
+        public bool EhPessoaFisica => new string(CpfCnpj.Where(char.IsDigit).ToArray()).Length == 11;
         public DateTime DataCadastro { get; set; }
         public DateTime? DataAtualizacao { get; set; }
 

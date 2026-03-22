@@ -272,7 +272,8 @@ async function adicionarFornecedor(fornecedorId: string) {
     dialogAdd.value = false;
     searchFornecedor.value = '';
   } catch (error: any) {
-    mostrarMensagem(error.message || 'Erro ao adicionar fornecedor', 'error');
+    const msg = (error as any).response?.data?.message || 'Erro ao adicionar fornecedor';
+    mostrarMensagem(msg, 'error');
   }
 }
 
