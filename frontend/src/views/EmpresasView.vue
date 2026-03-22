@@ -28,7 +28,7 @@
     <!-- Grid de Cards -->
     <v-row v-else>
       <v-col v-for="empresa in empresasFiltradas" :key="empresa.id" cols="12" md="6" lg="4">
-        <v-card elevation="2" hover>
+        <v-card elevation="2" hover style="cursor: pointer" @click="router.push({ name: 'EmpresasDetalhes', params: { id: empresa.id } })">
           <v-card-text>
             <!-- Avatar com iniciais -->
             <div class="d-flex align-start">
@@ -46,7 +46,7 @@
                   <!-- Menu de ações -->
                   <v-menu>
                     <template v-slot:activator="{ props }">
-                      <v-btn icon="mdi-dots-vertical" variant="text" size="small" v-bind="props"></v-btn>
+                      <v-btn icon="mdi-dots-vertical" variant="text" size="small" v-bind="props" @click.stop></v-btn>
                     </template>
                     <v-list density="compact">
                       <v-list-item prepend-icon="mdi-pencil" title="Editar Detalhes"
@@ -185,6 +185,7 @@
 
 <script setup lang="ts">
 import { ref, onMounted, computed } from 'vue';
+import { useRouter } from 'vue-router';
 import { useEmpresaStore } from '@/stores/empresaStore';
 import { cepService } from '@/services/cepService';
 import type { Empresa, EmpresaFormData } from '@/types';
@@ -196,6 +197,7 @@ import {
   apenasNumeros,
 } from '@/utils/validators';
 
+const router = useRouter();
 const empresaStore = useEmpresaStore();
 
 // Refs

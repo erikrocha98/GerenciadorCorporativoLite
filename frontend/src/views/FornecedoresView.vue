@@ -37,7 +37,7 @@
     <!-- Grid de Cards -->
     <v-row v-else>
       <v-col v-for="fornecedor in fornecedoresFiltrados" :key="fornecedor.id" cols="12" md="6" lg="4">
-        <v-card elevation="2" hover>
+        <v-card elevation="2" hover style="cursor: pointer" @click="router.push({ name: 'FornecedoresDetalhes', params: { id: fornecedor.id } })">
           <v-card-text>
             <div class="d-flex align-start">
               <v-avatar color="primary" size="48" class="mr-3">
@@ -57,7 +57,7 @@
                   <!-- Menu de ações -->
                   <v-menu>
                     <template v-slot:activator="{ props }">
-                      <v-btn icon="mdi-dots-vertical" variant="text" size="small" v-bind="props"></v-btn>
+                      <v-btn icon="mdi-dots-vertical" variant="text" size="small" v-bind="props" @click.stop></v-btn>
                     </template>
                     <v-list density="compact">
                       <v-list-item prepend-icon="mdi-pencil" title="Editar"
@@ -205,6 +205,7 @@
 
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue';
+import { useRouter } from 'vue-router';
 import { useFornecedorStore } from '@/stores/fornecedorStore';
 import { cepService } from '@/services/cepService';
 import type { Fornecedor, FornecedorFormData } from '@/types';
@@ -219,6 +220,7 @@ import {
   apenasNumeros,
 } from '@/utils/validators';
 
+const router = useRouter();
 const fornecedorStore = useFornecedorStore();
 
 // Refs
