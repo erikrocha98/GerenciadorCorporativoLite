@@ -1,11 +1,1 @@
-﻿namespace DesafioFullStack.Tests
-{
-    public class UnitTest1
-    {
-        [Fact]
-        public void Test1()
-        {
-
-        }
-    }
-}
+﻿// Arquivo removido — testes organizados em subpastas por categoria.
