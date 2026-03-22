@@ -17,6 +17,7 @@ export interface Fornecedor {
     
     // Relacionamento
     empresas?: Empresa[];
+    empresasCount?: number;
     createdAt?: string;
     updatedAt?: string;
 }

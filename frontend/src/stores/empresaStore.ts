@@ -115,8 +115,8 @@ export const useEmpresaStore = defineStore('empresa', () => {
         error.value = null;
         try {
             await empresaService.addFornecedor(empresaId, fornecedorId);
-            // Recarregar empresa para atualizar lista de fornecedores
             await fetchEmpresaById(empresaId);
+            await fetchFornecedoresEmpresa(empresaId);
         } catch (err: any) {
             error.value = err.message || 'Erro ao adicionar fornecedor';
             throw err;
@@ -133,8 +133,8 @@ export const useEmpresaStore = defineStore('empresa', () => {
         error.value = null;
         try {
             await empresaService.removeFornecedor(empresaId, fornecedorId);
-            // Recarregar empresa para atualizar lista de fornecedores
             await fetchEmpresaById(empresaId);
+            await fetchFornecedoresEmpresa(empresaId);
         } catch (err: any) {
             error.value = err.message || 'Erro ao remover fornecedor';
             throw err;
@@ -173,6 +173,7 @@ export const useEmpresaStore = defineStore('empresa', () => {
         error,
         fetchEmpresas,
         fetchEmpresaById,
+        fetchFornecedoresEmpresa,
         criarEmpresa,
         atualizarEmpresa,
         deletarEmpresa,

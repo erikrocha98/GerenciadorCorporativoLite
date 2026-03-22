@@ -16,6 +16,13 @@ namespace DesafioFullStack.Infrastructure.Repositories
         {
         }
 
+        public new async Task<IEnumerable<Fornecedor>> GetAllAsync()
+        {
+            return await _dbSet
+                .Include(f => f.EmpresaFornecedores)
+                .ToListAsync();
+        }
+
         public async Task<bool> CpfCnpjExistsAsync(string cpfCnpj, Guid? fornecedorIdToExclude = null)
         {
             var query = _dbSet.Where(f => f.CpfCnpj == cpfCnpj);
@@ -28,7 +35,7 @@ namespace DesafioFullStack.Infrastructure.Repositories
 
         public async Task<IEnumerable<Fornecedor>> GetByFiltersAsync(string? nome = null, string? cpfCnpj = null)
         {
-            var query = _dbSet.AsQueryable();
+            var query = _dbSet.Include(f => f.EmpresaFornecedores).AsQueryable();
 
             if (!string.IsNullOrWhiteSpace(nome))
                 query = query.Where(f => f.Nome.Contains(nome));

@@ -28,7 +28,8 @@ namespace DesafioFullStack.Application.Mappings
 
             // Fornecedor
             CreateMap<Fornecedor, FornecedorDto>()
-                .ForMember(dest => dest.EhPessoaFisica, opt => opt.MapFrom(src => src.EhPessoaFisica));
+                .ForMember(dest => dest.EhPessoaFisica, opt => opt.MapFrom(src => src.EhPessoaFisica))
+                .ForMember(dest => dest.EmpresasCount, opt => opt.MapFrom(src => src.EmpresaFornecedores.Count));
 
             CreateMap<CreateFornecedorDto, Fornecedor>()
                 .ForMember(dest => dest.Id, opt => opt.Ignore())

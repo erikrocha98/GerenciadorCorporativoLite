@@ -17,6 +17,7 @@ namespace DesafioFullStack.Application.DTOs
         public DateTime? DataNascimento { get; set; }
         public bool EhPessoaFisica { get; set; }
         public DateTime DataCadastro { get; set; }
+        public int EmpresasCount { get; set; }
     }
 
     public class CreateFornecedorDto 

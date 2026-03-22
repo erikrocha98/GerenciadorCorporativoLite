@@ -314,6 +314,7 @@ function mostrarMensagem(texto: string, cor: string) {
 onMounted(async () => {
   const id = route.params.id as string;
   await empresaStore.fetchEmpresaById(id);
+  await empresaStore.fetchFornecedoresEmpresa(id);
   await fornecedorStore.fetchFornecedores();
 });
 </script>

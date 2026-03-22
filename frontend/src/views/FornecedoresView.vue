@@ -91,7 +91,7 @@
                 <div class="d-flex justify-space-between align-center mt-4">
                   <div>
                     <span class="text-caption text-medium-emphasis">Empresas</span>
-                    <p class="text-h6 mb-0">{{ fornecedor.empresas?.length || 0 }}</p>
+                    <p class="text-h6 mb-0">{{ fornecedor.empresasCount ?? 0 }}</p>
                   </div>
                   <v-chip color="success" size="small" label>
                     <v-icon start size="small">mdi-check-circle</v-icon>
