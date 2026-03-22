@@ -280,7 +280,7 @@ async function buscarCepEmpresa() {
   if (dados) {
     form.value.logradouro = dados.logradouro;
     form.value.bairro = dados.bairro;
-    form.value.cidade = dados.localidade;
+    form.value.cidade = dados.cidade;
     form.value.uf = dados.uf;
   } else {
     mostrarMensagem('CEP não encontrado', 'error');

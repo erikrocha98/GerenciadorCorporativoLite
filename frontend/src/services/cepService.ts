@@ -23,7 +23,7 @@ export const cepService = {
                 cep: response.data.cep,
                 logradouro: response.data.logradouro || '',
                 bairro: response.data.bairro || '',
-                localidade: response.data.cidade || '',
+                cidade: response.data.cidade || '',
                 uf: response.data.uf || '',
             };
         } catch (error) {
