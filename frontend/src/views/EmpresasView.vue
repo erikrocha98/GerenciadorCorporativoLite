@@ -116,29 +116,29 @@
 
         <v-card-text>
           <v-form ref="formRef" @submit.prevent="salvarEmpresa">
-            <v-text-field v-model="form.cnpj" label="CNPJ *" variant="outlined" :rules="[rules.required, rules.cnpj]"
+            <v-text-field class="mb-4" v-model="form.cnpj" label="CNPJ *" variant="outlined" :rules="[rules.required, rules.cnpj]"
               @input="formatarCampoCNPJ" maxlength="18" prepend-inner-icon="mdi-card-account-details"></v-text-field>
 
-            <v-text-field v-model="form.nomeFantasia" label="Nome Fantasia *" variant="outlined"
+            <v-text-field class="mb-4" v-model="form.nomeFantasia" label="Nome Fantasia *" variant="outlined"
               :rules="[rules.required]" prepend-inner-icon="mdi-domain"></v-text-field>
 
-            <v-text-field v-model="form.cep" label="CEP *" variant="outlined" :rules="[rules.required, rules.cep]"
+            <v-text-field class="mb-4" v-model="form.cep" label="CEP *" variant="outlined" :rules="[rules.required, rules.cep]"
               @input="formatarCampoCEP" @blur="buscarCepEmpresa" maxlength="9"
               prepend-inner-icon="mdi-map-marker"></v-text-field>
 
-            <v-text-field v-model="form.logradouro" label="Logradouro" variant="outlined" readonly
+            <v-text-field class="mb-4" v-model="form.logradouro" label="Logradouro" variant="outlined" readonly
               prepend-inner-icon="mdi-road"></v-text-field>
 
-            <v-text-field v-model="form.bairro" label="Bairro" variant="outlined" readonly
+            <v-text-field class="mb-4" v-model="form.bairro" label="Bairro" variant="outlined" readonly
               prepend-inner-icon="mdi-home-group"></v-text-field>
 
             <v-row>
               <v-col cols="8">
-                <v-text-field v-model="form.cidade" label="Cidade" variant="outlined" readonly
+                <v-text-field class="mb-4" v-model="form.cidade" label="Cidade" variant="outlined" readonly
                   prepend-inner-icon="mdi-city"></v-text-field>
               </v-col>
               <v-col cols="4">
-                <v-text-field v-model="form.uf" label="UF" variant="outlined" readonly></v-text-field>
+                <v-text-field class="mb-4" v-model="form.uf" label="UF" variant="outlined" readonly></v-text-field>
               </v-col>
             </v-row>
           </v-form>

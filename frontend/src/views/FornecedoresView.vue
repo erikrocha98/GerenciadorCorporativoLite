@@ -131,42 +131,42 @@
 
         <v-card-text>
           <v-form ref="formRef" @submit.prevent="salvarFornecedor">
-            <v-text-field v-model="form.cpfCnpj" label="CPF/CNPJ *" variant="outlined"
+            <v-text-field class="mb-4" v-model="form.cpfCnpj" label="CPF/CNPJ *" variant="outlined"
               :rules="[rules.required, rules.cpfCnpj]" @input="formatarCampoCpfCnpj" maxlength="18"
               prepend-inner-icon="mdi-card-account-details"></v-text-field>
 
-            <v-text-field v-model="form.nome" label="Nome *" variant="outlined" :rules="[rules.required]"
+            <v-text-field class="mb-4" v-model="form.nome" label="Nome *" variant="outlined" :rules="[rules.required]"
               prepend-inner-icon="mdi-account"></v-text-field>
 
-            <v-text-field v-model="form.email" label="E-mail *" variant="outlined"
+            <v-text-field class="mb-4" v-model="form.email" label="E-mail *" variant="outlined"
               :rules="[rules.required, rules.email]" prepend-inner-icon="mdi-email"></v-text-field>
 
-            <v-text-field v-model="form.cep" label="CEP *" variant="outlined" :rules="[rules.required, rules.cep]"
+            <v-text-field class="mb-4" v-model="form.cep" label="CEP *" variant="outlined" :rules="[rules.required, rules.cep]"
               @input="formatarCampoCEP" @blur="buscarCepFornecedor" maxlength="9"
               prepend-inner-icon="mdi-map-marker"></v-text-field>
 
-            <v-text-field v-model="form.logradouro" label="Logradouro" variant="outlined" readonly
+            <v-text-field class="mb-4" v-model="form.logradouro" label="Logradouro" variant="outlined" readonly
               prepend-inner-icon="mdi-road"></v-text-field>
 
-            <v-text-field v-model="form.bairro" label="Bairro" variant="outlined" readonly
+            <v-text-field class="mb-4" v-model="form.bairro" label="Bairro" variant="outlined" readonly
               prepend-inner-icon="mdi-home-group"></v-text-field>
 
             <v-row>
               <v-col cols="8">
-                <v-text-field v-model="form.cidade" label="Cidade" variant="outlined" readonly
+                <v-text-field class="mb-4" v-model="form.cidade" label="Cidade" variant="outlined" readonly
                   prepend-inner-icon="mdi-city"></v-text-field>
               </v-col>
               <v-col cols="4">
-                <v-text-field v-model="form.uf" label="UF" variant="outlined" readonly></v-text-field>
+                <v-text-field class="mb-4" v-model="form.uf" label="UF" variant="outlined" readonly></v-text-field>
               </v-col>
             </v-row>
 
             <!-- Campos exclusivos para Pessoa Física -->
             <template v-if="isPessoaFisicaForm">
-              <v-text-field v-model="form.rg" label="RG *" variant="outlined" :rules="[rules.required]"
+              <v-text-field class="mb-4" v-model="form.rg" label="RG *" variant="outlined" :rules="[rules.required]"
                 prepend-inner-icon="mdi-card-text"></v-text-field>
 
-              <v-text-field v-model="form.dataNascimento" label="Data de Nascimento *" variant="outlined"
+              <v-text-field class="mb-4" v-model="form.dataNascimento" label="Data de Nascimento *" variant="outlined"
                 type="date" :rules="[rules.required]" prepend-inner-icon="mdi-calendar"></v-text-field>
             </template>
           </v-form>
