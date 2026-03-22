@@ -75,7 +75,7 @@ export const fornecedorService = {
       if (nome) params.append('nome', nome);
       if (cpfCnpj) params.append('cpfCnpj', cpfCnpj);
 
-      const response = await api.get<Fornecedor[]>(`/Fornecedor/search?${params.toString()}`);
+      const response = await api.get<Fornecedor[]>(`/Fornecedor?${params.toString()}`);
       return response.data;
     } catch (error) {
       console.error('Erro ao buscar fornecedores:', error);
