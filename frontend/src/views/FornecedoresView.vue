@@ -204,8 +204,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted } from 'vue';
-import { useRouter } from 'vue-router';
+import { ref, computed, onMounted, watch } from 'vue';
+import { useRouter, useRoute } from 'vue-router';
 import { useFornecedorStore } from '@/stores/fornecedorStore';
 import { cepService } from '@/services/cepService';
 import type { Fornecedor, FornecedorFormData } from '@/types';
@@ -221,6 +221,7 @@ import {
 } from '@/utils/validators';
 
 const router = useRouter();
+const route = useRoute();
 const fornecedorStore = useFornecedorStore();
 
 // Refs
@@ -446,6 +447,14 @@ function mostrarMensagem(texto: string, cor: string) {
   snackbarColor.value = cor;
   snackbar.value = true;
 }
+
+// Abrir dialog se vier do Dashboard com query ?novo=true
+watch(() => route.query.novo, (val) => {
+  if (val === 'true') {
+    dialogNovo.value = true;
+    router.replace({ query: {} });
+  }
+}, { immediate: true });
 
 // Carregar fornecedores ao montar
 onMounted(async () => {

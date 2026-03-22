@@ -28,7 +28,7 @@
     <v-navigation-drawer v-model="drawer" temporary>
       <v-list>
         <!-- Header do Menu -->
-        <v-list-item prepend-icon="mdi-view-dashboard" title="Menu teste" subtitle="Navegação"></v-list-item>
+        <v-list-item prepend-icon="mdi-view-dashboard" title="Menu" subtitle="Navegação"></v-list-item>
       </v-list>
 
       <v-divider></v-divider>

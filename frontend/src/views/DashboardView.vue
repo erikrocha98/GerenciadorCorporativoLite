@@ -67,7 +67,7 @@
               <v-list-item
                 prepend-icon="mdi-plus-circle"
                 title="Novo Fornecedor"
-                :to="{ name: 'NovoFornecedor' }"
+                :to="{ name: 'Fornecedores', query: { novo: 'true' } }"
               ></v-list-item>
             </v-list>
           </v-card-text>

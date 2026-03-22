@@ -28,16 +28,6 @@ const routes: RouteRecordRaw[] = [
         name: 'FornecedoresDetalhes',
         component: () => import('@/views/FornecedorDetalhesView.vue')
     },
-    {
-        path: '/fornecedores/novo',
-        name: 'NovoFornecedor',
-        component: () => import('@/views/FornecedorFormView.vue')
-    },
-    {
-        path: '/fornecedores/editar/:id',
-        name: 'EditarFornecedor',
-        component: () => import('@/views/FornecedorFormView.vue')
-    },
 ]
 
 const router = createRouter({
