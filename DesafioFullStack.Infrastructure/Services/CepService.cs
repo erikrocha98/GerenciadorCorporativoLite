@@ -26,28 +26,30 @@ namespace DesafioFullStack.Infrastructure.Services
 
             try
             {
-                // ViaCEP API
-                var response = await _httpClient.GetAsync($"https://viacep.com.br/ws/{cepLimpo}/json/");
+                // cep.la API
+                var request = new HttpRequestMessage(HttpMethod.Get, $"https://cep.la/{cepLimpo}");
+                request.Headers.Add("Accept", "application/json");
+
+                var response = await _httpClient.SendAsync(request);
 
                 if (!response.IsSuccessStatusCode)
                     return null;
 
                 var content = await response.Content.ReadAsStringAsync();
-                var cepData = JsonSerializer.Deserialize<ViaCepResponse>(content, new JsonSerializerOptions
+                var cepData = JsonSerializer.Deserialize<CepLaResponse>(content, new JsonSerializerOptions
                 {
                     PropertyNameCaseInsensitive = true
                 });
 
-                // ViaCEP retorna {"erro": true} quando CEP não existe
-                if (cepData == null || cepData.Erro)
+                if (cepData == null || string.IsNullOrWhiteSpace(cepData.Cep))
                     return null;
 
                 return new CepResponse
                 {
-                    Cep = cepData.Cep ?? cepLimpo,
+                    Cep = cepData.Cep,
                     Logradouro = cepData.Logradouro ?? string.Empty,
                     Bairro = cepData.Bairro ?? string.Empty,
-                    Cidade = cepData.Localidade ?? string.Empty,
+                    Cidade = cepData.Cidade ?? string.Empty,
                     Uf = cepData.Uf ?? string.Empty
                 };
             }
@@ -63,16 +65,14 @@ namespace DesafioFullStack.Infrastructure.Services
             return resultado != null;
         }
 
-        // Classe auxiliar para deserializar a resposta da API ViaCEP
-        private class ViaCepResponse
+        // Classe auxiliar para deserializar a resposta da API cep.la
+        private class CepLaResponse
         {
             public string? Cep { get; set; }
             public string? Logradouro { get; set; }
-            public string? Complemento { get; set; }
             public string? Bairro { get; set; }
-            public string? Localidade { get; set; } // ViaCEP usa "localidade" para cidade
+            public string? Cidade { get; set; } // cep.la usa "cidade"
             public string? Uf { get; set; }
-            public bool Erro { get; set; } // ViaCEP retorna este campo quando CEP não existe
         }
     }
 }
