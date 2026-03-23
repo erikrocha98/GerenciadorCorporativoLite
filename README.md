@@ -72,3 +72,11 @@ dotnet test
 cd frontend
 npm run test
 ```
+
+---
+
+## Observações
+
+### API de CEP
+
+Para validação de CEP e autocomplete de endereço nos formulários, foi utilizada a **[ViaCEP](https://viacep.com.br/)** em substituição à API sugerida pelo desafio, devido à instabilidade desta última durante o desenvolvimento.
