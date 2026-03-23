@@ -26,6 +26,60 @@ Sistema fullstack para gerenciamento corporativo de pessoas físicas e jurídica
 
 ---
 
+## Arquitetura do Backend
+
+O backend segue os princípios da **Clean Architecture**, organizado em quatro projetos com dependências unidirecionais:
+
+```
+DesafioFullStack.API          → Camada de apresentação (controllers, configuração HTTP)
+DesafioFullStack.Application  → Casos de uso (DTOs, mapeamentos com AutoMapper)
+DesafioFullStack.Domain       → Núcleo do negócio (entidades, interfaces, serviços de domínio, value objects, validadores)
+DesafioFullStack.Infrastructure → Implementação de persistência (EF Core, repositórios, migrations)
+```
+
+**Fluxo de dependência:**
+```
+API → Application → Domain ← Infrastructure
+```
+
+- **Domain** não depende de nenhuma outra camada — contém entidades (`Empresa`, `Fornecedor`, `EmpresaFornecedor`), interfaces de repositório (`IRepository`, `IEmpresaRepository`, `IFornecedorRepository`), value objects com validação própria (`Cpf`, `Cnpj`, `Cep`), validadores e serviços de domínio.
+- **Application** orquestra os casos de uso, expõe DTOs e configura os mapeamentos entre entidades e DTOs via AutoMapper.
+- **Infrastructure** implementa as interfaces do Domain com Entity Framework Core (repositório genérico + repositórios especializados) e gerencia o `ApplicationDbContext`.
+- **API** expõe os endpoints REST via controllers e injeta as dependências das camadas inferiores.
+
+---
+
+## Estrutura de Pastas do Frontend
+
+```
+frontend/src/
+├── views/              # Páginas da aplicação (uma por rota)
+│   ├── DashboardView.vue
+│   ├── EmpresasView.vue
+│   ├── EmpresaDetalhesView.vue
+│   ├── FornecedoresView.vue
+│   └── FornecedorDetalhesView.vue
+├── components/         # Componentes reutilizáveis
+├── stores/             # Estado global com Pinia
+│   ├── empresaStore.ts
+│   ├── fornecedorStore.ts
+│   └── themeStore.ts
+├── services/           # Comunicação com a API
+│   ├── api.ts          # Instância configurada do Axios
+│   ├── empresaService.ts
+│   ├── fornecedorService.ts
+│   └── cepService.ts   # Integração com ViaCEP
+├── types/              # Interfaces e tipos TypeScript
+├── router/             # Definição das rotas (Vue Router)
+├── plugins/            # Configuração de plugins (Vuetify)
+├── utils/              # Funções utilitárias (validadores de CPF/CNPJ)
+├── __tests__/          # Testes unitários (Vitest)
+├── App.vue             # Componente raiz
+└── main.ts             # Ponto de entrada da aplicação
+```
+
+---
+
 ## Pré-requisitos
 
 **Com Docker:**
