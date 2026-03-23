@@ -75,6 +75,37 @@ npm run test
 
 ---
 
+## Telas e fluxo da aplicação
+
+### Telas disponíveis
+
+| Tela | Rota | Descrição |
+|---|---|---|
+| **Dashboard** | `/` | Visão geral com totais de empresas e fornecedores, atalhos de navegação e tabela com as empresas mais recentes |
+| **Listagem de Empresas** | `/empresas` | Grid com todas as empresas cadastradas, busca por nome/CNPJ/cidade/estado, cadastro e edição via modal, exclusão com confirmação |
+| **Detalhes da Empresa** | `/empresas/:id` | Dados completos da empresa e lista de fornecedores vinculados, com opções para vincular e desvincular fornecedores |
+| **Listagem de Fornecedores** | `/fornecedores` | Grid com todos os fornecedores, busca por nome/CPF/CNPJ, cadastro e edição via modal, exclusão com confirmação |
+| **Detalhes do Fornecedor** | `/fornecedores/:id` | Dados completos do fornecedor (incluindo RG e idade para PF) e lista de empresas vinculadas |
+
+### Fluxo da aplicação
+
+```
+Dashboard (/)
+├── → Listagem de Empresas (/empresas)
+│        ├── → Detalhes da Empresa (/empresas/:id)
+│        │        └── → Detalhes do Fornecedor (/fornecedores/:id)
+│        └── Modal criar/editar empresa
+│
+└── → Listagem de Fornecedores (/fornecedores)
+         ├── → Detalhes do Fornecedor (/fornecedores/:id)
+         │        └── → Detalhes da Empresa (/empresas/:id)
+         └── Modal criar/editar fornecedor
+```
+
+Os formulários de empresa e fornecedor realizam autocomplete de endereço ao digitar o CEP (via ViaCEP). O formulário de fornecedor exibe campos adicionais de RG e data de nascimento quando o tipo selecionado é Pessoa Física.
+
+---
+
 ## Observações
 
 ### API de CEP
